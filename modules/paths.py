@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument("--data-dir", type=str, default=os.path.dirname(os.path.dirname(os.path.realpath(__file__))), help="base path where all user data is stored",)
 cmd_opts_pre = parser.parse_known_args()[0]
 data_path = cmd_opts_pre.data_dir
-models_path = "/content/drive/MyDrive/satble-diffusion"
+models_path = "/content/drive/MyDrive/satble-diffusion/models"
 
 # data_path = cmd_opts_pre.data
 sys.path.insert(0, script_path)
