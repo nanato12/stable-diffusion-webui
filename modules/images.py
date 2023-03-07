@@ -8,6 +8,7 @@ import math
 import os
 from collections import namedtuple
 import re
+import shutil
 
 import numpy as np
 import piexif
@@ -18,6 +19,7 @@ import string
 import json
 import hashlib
 
+import modules.paths as paths
 from modules import sd_samplers, shared, script_callbacks, errors
 from modules.shared import opts, cmd_opts
 
@@ -529,6 +531,10 @@ def save_image(image, path, basename, seed=None, prompt=None, extension='png', i
     pnginfo = existing_info or {}
     if info is not None:
         pnginfo[pnginfo_section_name] = info
+
+    dist_param_file_path = f"{fullfn}.txt"
+    param_file_path = os.path.join(paths.data_path, "params.txt")
+    shutil.copy(param_file_path, dist_param_file_path)
 
     params = script_callbacks.ImageSaveParams(image, p, fullfn, pnginfo)
     script_callbacks.before_image_saved_callback(params)
